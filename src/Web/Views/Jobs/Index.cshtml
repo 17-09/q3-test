@@ -1,0 +1,48 @@
+﻿@model IEnumerable<JobViewModel>
+
+@{
+    ViewData["Title"] = "All Jobs";
+}
+
+<div class="container" style="padding: 2rem 0rem">
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th scope="col">JobID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Floor</th>
+                    <th scope="col">Room Type</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var job in Model)
+                {
+                    <tr>
+                        <th scope="row">@job.RJobID</th>
+                        <td>@job.Name</td>
+                        <td>@job.Floor</td>
+                        <td>@job.RoomTypeName</td>
+                        <td style="color: @job.Color">@job.Status</td>
+                        <td>
+                            @if (job.AbleToMarkAsComplete)
+                            {
+                                <a href="@Url.Action("Complete", new {id = job.Id})">
+                                    <button type="button" class="btn btn-primary">Complete</button>
+                                </a>
+                            }
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+
+</script>
